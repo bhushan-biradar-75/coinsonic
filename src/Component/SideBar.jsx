@@ -18,7 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -41,22 +41,22 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   }),
 );
 
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
+// const AppBar = styled(MuiAppBar, {
+//   shouldForwardProp: (prop) => prop !== 'open',
+// })(({ theme, open }) => ({
+//   transition: theme.transitions.create(['margin', 'width'], {
+//     easing: theme.transitions.easing.sharp,
+//     duration: theme.transitions.duration.leavingScreen,
+//   }),
+//   ...(open && {
+//     width: `calc(100% - ${drawerWidth}px)`,
+//     marginLeft: `${drawerWidth}px`,
+//     transition: theme.transitions.create(['margin', 'width'], {
+//       easing: theme.transitions.easing.easeOut,
+//       duration: theme.transitions.duration.enteringScreen,
+//     }),
+//   }),
+// }));
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -71,6 +71,9 @@ export default function SideBar() {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
 
+
+  const navigator = useNavigate()
+
   const handleDrawerOpen = () => {
     console.log("111")
     setOpen(true);
@@ -81,13 +84,13 @@ export default function SideBar() {
   };
 
   const handleDrawerClose11 = () => {
-    console.log("222")
+    navigator('/news')
   };
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      {/* <CssBaseline /> */}
+      {/* <AppBar position="fixed" open={open}> */}
         <Toolbar>
           <IconButton
             color="inherit"
@@ -99,10 +102,10 @@ export default function SideBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Persistent drawer
-          </Typography>
+              CoinSonic Present's
+            </Typography>
         </Toolbar>
-      </AppBar>
+      {/* </AppBar> */}
       <Drawer
         sx={{
           width: drawerWidth,
@@ -121,34 +124,60 @@ export default function SideBar() {
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
-        <Divider />
+        
+        {/* Home */}
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon
-                onClick={handleDrawerClose}
-                >
-                  {index % 2 === 0 ? "1" : "2"}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
+            <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={"Home"}  onClick={handleDrawerClose11}/>
               </ListItemButton>
             </ListItem>
-          ))}
         </List>
+        <Divider/>
+
+        {/* Cryptocurrency */}
+        <List>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Cryptocurrency"}  onClick={handleDrawerClose11}/>
+              </ListItemButton>
+            </ListItem>
+        </List>
+        <Divider/>
+
+        {/* Exchange */}
+        <List>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Exchange"}  onClick={handleDrawerClose11}/>
+              </ListItemButton>
+            </ListItem>
+        </List>
+        <Divider/>
+
+        {/* News */}
+        <List>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary={"News"}  onClick={handleDrawerClose11}/>
+              </ListItemButton>
+            </ListItem>
+        </List>
+        <Divider/>
+
+
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
