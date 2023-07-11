@@ -18,7 +18,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import { history } from '../history';
+// import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -71,6 +74,17 @@ export default function SideBar() {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
 
+  // const style = () => {
+   const IconTextColor = {
+      color:"white",
+    }
+
+  const listItemButtonStyle = {
+      '&:hover': {
+        backgroundColor: '#018dfa', // Set your desired hover color here
+      },
+    };
+  // }
 
   const navigator = useNavigate()
 
@@ -83,12 +97,12 @@ export default function SideBar() {
     console.log("222")
   };
 
-  const handleDrawerClose11 = () => {
+  const handleDrawerClose11 = (d) => {
     navigator('/news')
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex'}}>
       {/* <CssBaseline /> */}
       {/* <AppBar position="fixed" open={open}> */}
         <Toolbar>
@@ -99,10 +113,10 @@ export default function SideBar() {
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-              CoinSonic Present's
+          <Typography sx={{color:"black"}} variant="h5" noWrap component="div">
+              Global Crypto Stats
             </Typography>
         </Toolbar>
       {/* </AppBar> */}
@@ -113,6 +127,7 @@ export default function SideBar() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            backgroundColor : "#001528"
           },
         }}
         variant="persistent"
@@ -128,11 +143,11 @@ export default function SideBar() {
         {/* Home */}
         <List>
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton sx={listItemButtonStyle}>
                 <ListItemIcon>
-                  <InboxIcon />
+                  <InboxIcon sx={IconTextColor} />
                 </ListItemIcon>
-                <ListItemText primary={"Home"}  onClick={handleDrawerClose11}/>
+                <ListItemText sx={IconTextColor} primary={"Home"} onClick={() => { navigator("/") }}/>
               </ListItemButton>
             </ListItem>
         </List>
@@ -141,11 +156,11 @@ export default function SideBar() {
         {/* Cryptocurrency */}
         <List>
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton sx={listItemButtonStyle}>
                 <ListItemIcon>
-                  <InboxIcon />
+                  <InboxIcon  sx={IconTextColor}/>
                 </ListItemIcon>
-                <ListItemText primary={"Cryptocurrency"}  onClick={handleDrawerClose11}/>
+                <ListItemText sx={IconTextColor} primary={"Cryptocurrency"}  onClick={() => { navigator("/crypto") }}/>
               </ListItemButton>
             </ListItem>
         </List>
@@ -154,11 +169,11 @@ export default function SideBar() {
         {/* Exchange */}
         <List>
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton sx={listItemButtonStyle}>
                 <ListItemIcon>
-                  <InboxIcon />
+                  <InboxIcon sx={IconTextColor}/>
                 </ListItemIcon>
-                <ListItemText primary={"Exchange"}  onClick={handleDrawerClose11}/>
+                <ListItemText sx={IconTextColor} primary={"Exchange"}  onClick={() => { navigator("/exchange")}}/>
               </ListItemButton>
             </ListItem>
         </List>
@@ -167,11 +182,11 @@ export default function SideBar() {
         {/* News */}
         <List>
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton sx={listItemButtonStyle}>
                 <ListItemIcon>
-                  <InboxIcon />
+                  <InboxIcon sx={IconTextColor}/>
                 </ListItemIcon>
-                <ListItemText primary={"News"}  onClick={handleDrawerClose11}/>
+                <ListItemText sx={IconTextColor} primary={"News"}  onClick={() => { navigator("/news")}}/>
               </ListItemButton>
             </ListItem>
         </List>
@@ -179,14 +194,14 @@ export default function SideBar() {
 
 
       </Drawer>
-      <Main open={open}>
+      {/* <Main open={open}>
         <DrawerHeader />
         <Typography paragraph>
           Hello coinsonic
         </Typography>
         <Typography paragraph>
         </Typography>
-      </Main>
+      </Main> */}
     </Box>
   );
 }

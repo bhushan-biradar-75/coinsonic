@@ -10,8 +10,8 @@ function App() {
 
   return (
     <>
-    <SideBar/>
     <BrowserRouter>
+    <SideBar/>
     <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/crypto' element={<Crypto/>}/>
