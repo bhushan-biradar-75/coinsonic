@@ -1,28 +1,33 @@
 import React, { Children, createContext, useContext, useState } from 'react'
 import { useEffect } from 'react'
-import { getCoin } from './Services/Apiservices'
+import { getCoin, getUpdatedNews } from './Services/Apiservices'
 
 const myContext = createContext();
 
 const ContextAPI = ({children}) => {
     const [globalAPIdata, setglobalAPIdata] = useState({
         totalCoinData: [],
-        coinCardsData: []
     })
+    const [newsData , setnewsData] = useState([])
     const ShowCoinInfo = async () => {
         const apiResponse = await getCoin();
-        setglobalAPIdata({ totalCoinData: apiResponse }),
-        // console.log("apiRes.block", block)
-        console.log("API RES11111--->", globalAPIdata.totalCoinData)
+        setglobalAPIdata({ totalCoinData: apiResponse })
     }
     
+    const getNewsData = async () => {
+        const Response = await getUpdatedNews();
+        console.log("response", Response)
+        setnewsData(Response.data.value ?? [])
+    }
+console.log("apiredata",globalAPIdata.newsData)
     useEffect(() => {
-
-        ShowCoinInfo()
+         ShowCoinInfo()
+        getNewsData()
     },[])
+
     return (
         <myContext.Provider
-        value={ globalAPIdata  }
+        value={ {globalAPIdata , newsData} }
         >
             {children}
         </myContext.Provider>

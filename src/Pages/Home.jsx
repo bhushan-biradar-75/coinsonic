@@ -9,26 +9,23 @@ import { color } from '@mui/system';
 import { myContext } from '../ContextAPI';
 
 const Home = () => {
-
-const UserContext = useContext(myContext);
-// const UserDispatchContext = createContext(undefined);
-// console.log("UserContext Home-->",UserContext.totalCoinData.data.data.stats)
+  const UserContext = useContext(myContext);
   const [apiRes, setapiRes] = useState({
     totalCoinData: [],
     coinCardsData: [],
-  })
-
+})
+  
   const [block, setblock] = useState(false)
-
-  const ShowCoinInfo = async () => {
+  console.log("home context data",UserContext.globalAPIdata)
+  const ShowCoinInfo = async (res) => {
+    console.log("show coin info",res)
     setblock(true)
-    console.log("**********",UserContext)
-    setapiRes({ totalCoinData: UserContext.totalCoinData.data.data.stats, UserContext: UserContext.totalCoinData.data.data.coins, block: false }),
+    setapiRes({ totalCoinData: res.globalAPIdata.totalCoinData.data.data.stats, coinCardsData: res.globalAPIdata.totalCoinData.data.data.coins, block: false }),
       setblock(false)
   }
 
   useEffect(() => {
-    ShowCoinInfo()
+    ShowCoinInfo(UserContext)
   }, [])
   console.log("totlcoin--->",apiRes.totalCoinData)
   console.log("coincard---->",apiRes.coinCardsData)
