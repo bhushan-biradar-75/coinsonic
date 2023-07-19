@@ -5,11 +5,13 @@ import Exchange from './Pages/Exchange'
 import Home from './Pages/Home'
 import News from './Pages/News'
 import Crypto from './Pages/Crypto'
+import {ContextAPI} from './ContextAPI'
+import { useContext } from 'react'
 
 function App() {
-
+  const Response = useContext(ContextAPI)
   return (
-    <>
+    <ContextAPI>
     <BrowserRouter>
     <SideBar/>
     <Routes>
@@ -19,7 +21,7 @@ function App() {
       <Route path='/news' element={<News/>}/>
     </Routes>
     </BrowserRouter>
-    </>
+    </ContextAPI>
   )
 }
 

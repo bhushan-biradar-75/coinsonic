@@ -17,7 +17,6 @@ const CustomCard = styled(Card)({
   margin: 'auto',
 });
 const CryptoCurrencyCard = (props) => {
-  console.log("props",props)
   const { coinName , subTitleone , subTitleTwo , volume , iconLink , symBol} = props;
   return (
     <CustomCard>
