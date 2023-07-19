@@ -1,14 +1,18 @@
 import { Avatar, Button, Card, CardActions, CardContent, CardHeader, Typography } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { createContext, useContext, useEffect } from 'react'
 import { getCoin } from '../Services/Apiservices'
 import { AppBar, Toolbar, Container, Grid, Paper } from '@mui/material';
 import { useState } from 'react';
 import CryptoCurrencyCard from '../Component/CryptoCurrencyCard';
 import Loader from '../Component/Loader';
 import { color } from '@mui/system';
+import { myContext } from '../ContextAPI';
 
 const Home = () => {
 
+const UserContext = useContext(myContext);
+// const UserDispatchContext = createContext(undefined);
+// console.log("UserContext Home-->",UserContext.totalCoinData.data.data.stats)
   const [apiRes, setapiRes] = useState({
     totalCoinData: [],
     coinCardsData: [],
@@ -18,18 +22,16 @@ const Home = () => {
 
   const ShowCoinInfo = async () => {
     setblock(true)
-    const apiResponse = await getCoin();
-    setapiRes({ totalCoinData: apiResponse.data.data.stats, coinCardsData: apiResponse.data.data.coins, block: false }),
+    console.log("**********",UserContext)
+    setapiRes({ totalCoinData: UserContext.totalCoinData.data.data.stats, UserContext: UserContext.totalCoinData.data.data.coins, block: false }),
       setblock(false)
-    console.log("apiRes.block", block)
-    console.log("API RES--->", apiResponse.data.data.coins)
   }
 
   useEffect(() => {
     ShowCoinInfo()
   }, [])
-  console.log("apiRes.block 22", block)
-
+  console.log("totlcoin--->",apiRes.totalCoinData)
+  console.log("coincard---->",apiRes.coinCardsData)
   return (
     <>
       {/* <h1>Coin Sonic Present</h1> */}
