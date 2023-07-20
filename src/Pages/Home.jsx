@@ -23,7 +23,6 @@ const Home = () => {
     setapiRes({ totalCoinData: res.globalAPIdata.totalCoinData.data.data.stats, coinCardsData: res.globalAPIdata.totalCoinData.data.data.coins, block: false }),
       setblock(false)
   }
-
   useEffect(() => {
     ShowCoinInfo(UserContext)
   }, [])

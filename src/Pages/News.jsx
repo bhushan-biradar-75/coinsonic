@@ -42,8 +42,7 @@ console.log("news data",newsData.newsDescription)
          title={item.name}
          description={item.description}
          />
-         </Grid>
-         
+         </Grid>  
          ))
          }
       </Grid>
