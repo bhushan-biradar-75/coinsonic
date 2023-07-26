@@ -11,7 +11,7 @@ import { myContext } from '../ContextAPI';
 const Home = () => {
   const UserContext = useContext(myContext);
   const [apiRes, setapiRes] = useState({
-    totalCoinData: [],
+    totalCoinData: [],  
     coinCardsData: [],
 })
   
