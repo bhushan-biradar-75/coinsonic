@@ -14,7 +14,7 @@ const Home = () => {
     totalCoinData: [],  
     coinCardsData: [],
 })
-  
+      
   const [block, setblock] = useState(false)
   console.log("home context data",UserContext.globalAPIdata)
   const ShowCoinInfo = async (res) => {
