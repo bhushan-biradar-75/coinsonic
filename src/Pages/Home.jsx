@@ -18,7 +18,7 @@ const Home = () => {
   const [block, setblock] = useState(false)
   console.log("home context data",UserContext.globalAPIdata)
   const ShowCoinInfo = async (res) => {
-    console.log("show coin info",res)
+    // console.log("show coin info",res)
     setblock(true)
     setapiRes({ totalCoinData: res.globalAPIdata.totalCoinData.data.data.stats, coinCardsData: res.globalAPIdata.totalCoinData.data.data.coins, block: false }),
       setblock(false)
